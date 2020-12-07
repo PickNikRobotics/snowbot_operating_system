@@ -41,10 +41,9 @@ add_dependencies(winter_display ${catkin_EXPORTED_TARGETS})
 target_link_libraries(winter_display ${QT_LIBRARIES} ${catkin_LIBRARIES})
 
 if(CATKIN_ENABLE_TESTING)
-  find_package(catkin REQUIRED COMPONENTS roslaunch roslint)
+  find_package(catkin REQUIRED COMPONENTS roslint)
   roslint_cpp()
   roslint_add_test()
-  roslaunch_add_file_check(launch)
 endif()
 
 install(TARGETS winter_display
