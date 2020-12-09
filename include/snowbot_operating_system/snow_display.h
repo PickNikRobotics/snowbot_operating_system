@@ -32,8 +32,8 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef RVIZ_WINTER_WINTER_DISPLAY_H
-#define RVIZ_WINTER_WINTER_DISPLAY_H
+#ifndef SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H
+#define SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H
 
 #include <rviz/display.h>
 #include <rviz/ogre_helpers/point_cloud.h>
@@ -42,18 +42,18 @@
 #include <geometry_msgs/Point.h>
 #include <vector>
 
-namespace rviz_winter
+namespace snowbot_operating_system
 {
 inline double randScale()
 {
   return static_cast<double>(rand()) / RAND_MAX;
 }
 
-class WinterDisplay: public rviz::Display
+class SnowDisplay: public rviz::Display
 {
 Q_OBJECT
 public:
-  WinterDisplay();
+  SnowDisplay();
 
   void update(float wall_dt, float ros_dt) override;
 
@@ -83,6 +83,6 @@ private:
 
   double width_, height_;
 };
-}  // namespace rviz_winter
+}  // namespace snowbot_operating_system
 
-#endif  // RVIZ_WINTER_WINTER_DISPLAY_H
+#endif  // SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H

@@ -32,12 +32,12 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <rviz_winter/winter_display.h>
+#include <snowbot_operating_system/snow_display.h>
 #include <OgreSceneNode.h>
 
-namespace rviz_winter
+namespace snowbot_operating_system
 {
-WinterDisplay::WinterDisplay() : point_cloud_(nullptr)
+SnowDisplay::SnowDisplay() : point_cloud_(nullptr)
 {
   height_property_ = new rviz::FloatProperty("Height", 10.0, "Maximum Height", this, SLOT(updatePosition()));
   height_property_->setMin(0.0);
@@ -53,7 +53,7 @@ WinterDisplay::WinterDisplay() : point_cloud_(nullptr)
   size_property_->setMin(1);
 }
 
-void WinterDisplay::onInitialize()
+void SnowDisplay::onInitialize()
 {
   Display::onInitialize();
   if (!point_cloud_)
@@ -66,18 +66,18 @@ void WinterDisplay::onInitialize()
   updateSize();
 }
 
-void WinterDisplay::update(float wall_dt, float ros_dt)
+void SnowDisplay::update(float wall_dt, float ros_dt)
 {
   updatePosition();
 }
 
-void WinterDisplay::initializeXY(geometry_msgs::Point& pt) const
+void SnowDisplay::initializeXY(geometry_msgs::Point& pt) const
 {
   pt.x = (randScale() - 0.5) * width_;
   pt.y = (randScale() - 0.5) * width_;
 }
 
-void WinterDisplay::updateSize()
+void SnowDisplay::updateSize()
 {
   unsigned int size = static_cast<unsigned int>(size_property_->getInt());
   height_ = height_property_->getFloat();
@@ -94,7 +94,7 @@ void WinterDisplay::updateSize()
   updatePosition();
 }
 
-void WinterDisplay::updatePosition()
+void SnowDisplay::updatePosition()
 {
   double gravity = gravity_property_->getFloat();
   double wind = wind_property_->getFloat();
@@ -130,7 +130,7 @@ void WinterDisplay::updatePosition()
   letItSnow();
 }
 
-void WinterDisplay::letItSnow()
+void SnowDisplay::letItSnow()
 {
   if (!point_cloud_)
   {
@@ -147,7 +147,7 @@ void WinterDisplay::letItSnow()
   }
   point_cloud_->addPoints(&flakes_.front(), flakes_.size());
 }
-}  // namespace rviz_winter
+}  // namespace snowbot_operating_system
 
 #include <pluginlib/class_list_macros.hpp>
-PLUGINLIB_EXPORT_CLASS(rviz_winter::WinterDisplay, rviz::Display)
+PLUGINLIB_EXPORT_CLASS(snowbot_operating_system::SnowDisplay, rviz::Display)

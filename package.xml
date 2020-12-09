@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rviz_winter</name>
+  <name>snowbot_operating_system</name>
   <version>0.0.0</version>
   <description>The weather outside is frightful</description>
   <maintainer email="davidvlu@gmail.com">David V. Lu!!</maintainer>

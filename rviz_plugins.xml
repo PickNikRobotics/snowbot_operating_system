@@ -1,5 +1,5 @@
-<library path="lib/libwinter_display">
-  <class name="Winter" type="rviz_winter::WinterDisplay" base_class_type="rviz::Display">
+<library path="lib/libsnow_display">
+  <class name="Snow" type="snowbot_operating_system::SnowDisplay" base_class_type="rviz::Display">
     <description>The weather outside is frightful</description>
   </class>
 </library>
