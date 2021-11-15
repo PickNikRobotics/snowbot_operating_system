@@ -35,11 +35,11 @@
 #ifndef SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H
 #define SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H
 
-#include <rviz/display.h>
-#include <rviz/ogre_helpers/point_cloud.h>
-#include <rviz/properties/int_property.h>
-#include <rviz/properties/float_property.h>
-#include <geometry_msgs/Point.h>
+#include <rviz_common/display.hpp>
+#include <rviz_rendering/objects/point_cloud.hpp>
+#include <rviz_common/properties/int_property.hpp>
+#include <rviz_common/properties/float_property.hpp>
+#include <geometry_msgs/msg/point.hpp>
 #include <vector>
 
 namespace snowbot_operating_system
@@ -49,7 +49,7 @@ inline double randScale()
   return static_cast<double>(rand()) / RAND_MAX;
 }
 
-class SnowDisplay : public rviz::Display
+class SnowDisplay : public rviz_common::Display
 {
   Q_OBJECT
 public:
@@ -67,19 +67,19 @@ private Q_SLOTS:
 private:
   void letItSnow();
 
-  void initializeXY(geometry_msgs::Point& pt) const;
+  void initializeXY(geometry_msgs::msg::Point& pt) const;
 
-  rviz::PointCloud* point_cloud_;
-  std::vector<rviz::PointCloud::Point> flakes_;
+  rviz_rendering::PointCloud* point_cloud_;
+  std::vector<rviz_rendering::PointCloud::Point> flakes_;
 
-  std::vector<geometry_msgs::Point> points_;
+  std::vector<geometry_msgs::msg::Point> points_;
 
-  rviz::FloatProperty* width_property_;
-  rviz::FloatProperty* height_property_;
-  rviz::FloatProperty* gravity_property_;
-  rviz::FloatProperty* wind_property_;
-  rviz::FloatProperty* jiggle_property_;
-  rviz::IntProperty* size_property_;
+  rviz_common::properties::FloatProperty* width_property_;
+  rviz_common::properties::FloatProperty* height_property_;
+  rviz_common::properties::FloatProperty* gravity_property_;
+  rviz_common::properties::FloatProperty* wind_property_;
+  rviz_common::properties::FloatProperty* jiggle_property_;
+  rviz_common::properties::IntProperty* size_property_;
 
   double width_, height_;
 };

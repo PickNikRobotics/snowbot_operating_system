@@ -6,12 +6,14 @@
   <maintainer email="davidvlu@gmail.com">David V. Lu!!</maintainer>
   <license>BSD</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>geometry_msgs</depend>
   <depend>pluginlib</depend>
-  <depend>rviz</depend>
-  <test_depend>roslint</test_depend>
+  <depend>rviz_common</depend>
+  <depend>rviz_rendering</depend>
+  <test_depend>ament_cmake_clang_format</test_depend>
   <export>
     <rviz plugin="${prefix}/rviz_plugins.xml"/>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>

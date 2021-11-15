@@ -39,17 +39,23 @@ namespace snowbot_operating_system
 {
 SnowDisplay::SnowDisplay() : point_cloud_(nullptr)
 {
-  height_property_ = new rviz::FloatProperty("Height", 10.0, "Maximum Height", this, SLOT(updatePosition()));
+  height_property_ =
+      new rviz_common::properties::FloatProperty("Height", 10.0, "Maximum Height", this, SLOT(updatePosition()));
   height_property_->setMin(0.0);
 
-  width_property_ = new rviz::FloatProperty("Width", 10.0, "Total XY Dimension", this, SLOT(updatePosition()));
+  width_property_ =
+      new rviz_common::properties::FloatProperty("Width", 10.0, "Total XY Dimension", this, SLOT(updatePosition()));
   width_property_->setMin(0.0);
 
-  gravity_property_ = new rviz::FloatProperty("Gravity", 0.05, "Z motion per time step", this, SLOT(updatePosition()));
-  wind_property_ = new rviz::FloatProperty("Wind", 0.02, "X motion per time step", this, SLOT(updatePosition()));
-  jiggle_property_ = new rviz::FloatProperty("Jiggle", 0.03, "Magnitude of Jiggle", this, SLOT(updatePosition()));
+  gravity_property_ = new rviz_common::properties::FloatProperty("Gravity", 0.05, "Z motion per time step", this,
+                                                                 SLOT(updatePosition()));
+  wind_property_ =
+      new rviz_common::properties::FloatProperty("Wind", 0.02, "X motion per time step", this, SLOT(updatePosition()));
+  jiggle_property_ =
+      new rviz_common::properties::FloatProperty("Jiggle", 0.03, "Magnitude of Jiggle", this, SLOT(updatePosition()));
 
-  size_property_ = new rviz::IntProperty("Snowflakes", 1000, "Number of snowflakes", this, SLOT(updateSize()));
+  size_property_ =
+      new rviz_common::properties::IntProperty("Snowflakes", 1000, "Number of snowflakes", this, SLOT(updateSize()));
   size_property_->setMin(1);
 }
 
@@ -58,7 +64,7 @@ void SnowDisplay::onInitialize()
   Display::onInitialize();
   if (!point_cloud_)
   {
-    point_cloud_ = new rviz::PointCloud();
+    point_cloud_ = new rviz_rendering::PointCloud();
     scene_node_->attachObject(point_cloud_);
     point_cloud_->setAlpha(1.0);
   }
@@ -71,7 +77,7 @@ void SnowDisplay::update(float wall_dt, float ros_dt)
   updatePosition();
 }
 
-void SnowDisplay::initializeXY(geometry_msgs::Point& pt) const
+void SnowDisplay::initializeXY(geometry_msgs::msg::Point& pt) const
 {
   pt.x = (randScale() - 0.5) * width_;
   pt.y = (randScale() - 0.5) * width_;
@@ -86,7 +92,7 @@ void SnowDisplay::updateSize()
   points_.resize(size);
   flakes_.resize(size);
 
-  for (geometry_msgs::Point& point : points_)
+  for (geometry_msgs::msg::Point& point : points_)
   {
     initializeXY(point);
     point.z = randScale() * height_;
@@ -100,7 +106,7 @@ void SnowDisplay::updatePosition()
   double wind = wind_property_->getFloat();
   double jiggle = jiggle_property_->getFloat();
 
-  for (geometry_msgs::Point& point : points_)
+  for (geometry_msgs::msg::Point& point : points_)
   {
     point.x += wind;
 
@@ -145,9 +151,9 @@ void SnowDisplay::letItSnow()
     flakes_[i].position.z = points_[i].z;
     flakes_[i].setColor(1.0, 1.0, 1.0, 1.0);
   }
-  point_cloud_->addPoints(&flakes_.front(), flakes_.size());
+  point_cloud_->addPoints(flakes_.begin(), flakes_.end());
 }
 }  // namespace snowbot_operating_system
 
 #include <pluginlib/class_list_macros.hpp>
-PLUGINLIB_EXPORT_CLASS(snowbot_operating_system::SnowDisplay, rviz::Display)
+PLUGINLIB_EXPORT_CLASS(snowbot_operating_system::SnowDisplay, rviz_common::Display)
