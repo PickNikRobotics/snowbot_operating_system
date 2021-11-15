@@ -49,9 +49,9 @@ inline double randScale()
   return static_cast<double>(rand()) / RAND_MAX;
 }
 
-class SnowDisplay: public rviz::Display
+class SnowDisplay : public rviz::Display
 {
-Q_OBJECT
+  Q_OBJECT
 public:
   SnowDisplay();
 
