@@ -7,9 +7,12 @@
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>qtbase5-dev</build_depend>
   <depend>geometry_msgs</depend>
   <depend>pluginlib</depend>
   <depend>rviz</depend>
+  <exec_depend>libqt5-core</exec_depend>
+  <exec_depend>libqt5-widgets</exec_depend>
   <test_depend>roslint</test_depend>
   <export>
     <rviz plugin="${prefix}/rviz_plugins.xml"/>
