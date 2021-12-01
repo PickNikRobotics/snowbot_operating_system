@@ -32,8 +32,8 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H
-#define SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H
+#ifndef SNOWBOT_OPERATING_SYSTEM_SNOW_DISPLAY_H
+#define SNOWBOT_OPERATING_SYSTEM_SNOW_DISPLAY_H
 
 #include <rviz/display.h>
 #include <rviz/ogre_helpers/point_cloud.h>
@@ -46,7 +46,7 @@ namespace snowbot_operating_system
 {
 inline double randScale()
 {
-  return static_cast<double>(rand()) / RAND_MAX;
+  return static_cast<double>(rand_r()) / RAND_MAX;
 }
 
 class SnowDisplay : public rviz::Display
@@ -85,4 +85,4 @@ private:
 };
 }  // namespace snowbot_operating_system
 
-#endif  // SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H
+#endif  // SNOWBOT_OPERATING_SYSTEM_SNOW_DISPLAY_H
