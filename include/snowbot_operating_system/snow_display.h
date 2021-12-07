@@ -44,11 +44,6 @@
 
 namespace snowbot_operating_system
 {
-inline double randScale()
-{
-  return static_cast<double>(rand_r()) / RAND_MAX;
-}
-
 class SnowDisplay : public rviz::Display
 {
   Q_OBJECT

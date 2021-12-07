@@ -37,6 +37,12 @@
 
 namespace snowbot_operating_system
 {
+static unsigned int random_seed = std::time(NULL);
+inline double randScale()
+{
+  return static_cast<double>(rand_r(&random_seed)) / RAND_MAX;
+}
+
 SnowDisplay::SnowDisplay() : point_cloud_(nullptr)
 {
   height_property_ = new rviz::FloatProperty("Height", 10.0, "Maximum Height", this, SLOT(updatePosition()));
