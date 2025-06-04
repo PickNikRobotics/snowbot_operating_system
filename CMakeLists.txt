@@ -31,7 +31,7 @@ target_include_directories(snow_display PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
-ament_target_dependencies(snow_display geometry_msgs pluginlib rviz_common rviz_rendering)
+target_link_libraries(snow_display PUBLIC ${geometry_msgs_TARGETS} pluginlib::pluginlib rviz_common::rviz_common rviz_rendering::rviz_rendering)
 
 if(BUILD_TESTING)
   find_package(ament_cmake_clang_format REQUIRED)
