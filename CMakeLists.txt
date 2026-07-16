@@ -11,17 +11,32 @@ find_package(rviz_rendering REQUIRED)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt5 REQUIRED COMPONENTS
+find_package(Qt6 QUIET COMPONENTS
   Core
   Widgets
 )
-set(QT_LIBRARIES Qt5::Widgets)
+if(Qt6_FOUND)
+  set(QT_VERSION_MAJOR 6)
+else()
+  find_package(Qt5 REQUIRED COMPONENTS
+  Core
+  Widgets
+)
+  set(QT_VERSION_MAJOR 5)
+endif()
+set(QT_LIBRARIES Qt${QT_VERSION_MAJOR}::Widgets)
 
 add_definitions(-DQT_NO_KEYWORDS)
 
-qt5_wrap_cpp(MOC_FILES
+if(QT_VERSION_MAJOR EQUAL 5)
+  qt5_wrap_cpp(MOC_FILES
   include/snowbot_operating_system/snow_display.h
 )
+else()
+  qt6_wrap_cpp(MOC_FILES
+  include/snowbot_operating_system/snow_display.h
+)
+endif()
 
 add_library(snow_display
     src/snow_display.cpp
