@@ -32,6 +32,7 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <rclcpp/version.h>
 #include <snowbot_operating_system/snow_display.h>
 #include <OgreSceneNode.h>
 
@@ -72,10 +73,19 @@ void SnowDisplay::onInitialize()
   updateSize();
 }
 
+#if RCLCPP_VERSION_GTE(30, 0, 0)
+void SnowDisplay::update(std::chrono::nanoseconds wall_dt_ns, std::chrono::nanoseconds ros_dt_ns)
+{
+  (void)wall_dt_ns;
+  (void)ros_dt_ns;
+  updatePosition();
+}
+#else
 void SnowDisplay::update(float wall_dt, float ros_dt)
 {
   updatePosition();
 }
+#endif
 
 void SnowDisplay::initializeXY(geometry_msgs::msg::Point& pt) const
 {

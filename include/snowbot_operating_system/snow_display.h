@@ -35,6 +35,8 @@
 #ifndef SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H
 #define SNOWBOT_OPERATING_SYSTEM_WINTER_DISPLAY_H
 
+#include <rclcpp/version.h>
+#include <chrono>
 #include <rviz_common/display.hpp>
 #include <rviz_rendering/objects/point_cloud.hpp>
 #include <rviz_common/properties/int_property.hpp>
@@ -55,7 +57,11 @@ class SnowDisplay : public rviz_common::Display
 public:
   SnowDisplay();
 
+#if RCLCPP_VERSION_GTE(30, 0, 0)
+  void update(std::chrono::nanoseconds wall_dt, std::chrono::nanoseconds ros_dt) override;
+#else
   void update(float wall_dt, float ros_dt) override;
+#endif
 
 protected:
   void onInitialize() override;
