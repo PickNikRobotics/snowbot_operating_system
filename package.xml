@@ -4,7 +4,7 @@
   <version>0.0.5</version>
   <description>The weather outside is frightful</description>
   <maintainer email="david@metrorobots.com">David V. Lu!!</maintainer>
-  <license>BSD</license>
+  <license>BSD-2-Clause</license>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>qtbase5-dev</build_depend>
